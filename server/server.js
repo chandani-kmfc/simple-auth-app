@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Database = require('better-sqlite3');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');  // ✅ Changed from bcrypt to bcryptjs
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
