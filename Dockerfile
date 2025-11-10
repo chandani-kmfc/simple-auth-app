@@ -1,20 +1,22 @@
-# Use lightweight Node.js image
-FROM node:18-alpine
+# Use Node 20 instead of 18
+FROM node:20-alpine
 
-# Set working directory inside the container
+# Create app directory
 WORKDIR /app
 
-# Copy only package files first (for better caching)
+# Copy package files first (for caching)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install required build dependencies for native modules
+RUN apk add --no-cache python3 make g++ \
+    && npm install \
+    && apk del python3 make g++
 
 # Copy all other project files
 COPY . .
 
-# Expose port 4000 (your app runs here)
+# Expose app port
 EXPOSE 4000
 
-# Start the Node app
-CMD ["npm", "start"]
+# Run app
+CMD ["node", "server.js"]
