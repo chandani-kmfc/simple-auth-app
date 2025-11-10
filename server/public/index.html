@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+</head>
+<body>
+  <h2>Welcome Home!</h2>
+  <p id="user-email">Loading user info...</p>
+  <a href="/logout">Logout</a>
+
+  <script>
+    fetch('/user-info')
+      .then(res => {
+        if (!res.ok) throw new Error('Not logged in');
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById('user-email').textContent = `Logged in as: ${data.email}`;
+      })
+      .catch(() => {
+        window.location.href = '/login.html';
+      });
+  </script>
+</body>
+</html>

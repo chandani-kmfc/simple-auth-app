@@ -1,0 +1,13 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+
+# SQLite database
+server/database.sqlite
+
+# Environment files
+.env
+
+# System / IDE files
+.DS_Store
+Thumbs.db
